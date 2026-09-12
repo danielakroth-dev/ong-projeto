@@ -5,6 +5,7 @@ if (formulario) {
     const campos = formulario.querySelectorAll("input");
 
     const dadosSalvos = localStorage.getItem("cadastro");
+    console.log("Dados salvos:", dadosSalvos);
 
     if (dadosSalvos) {
         try {
