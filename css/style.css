@@ -1,147 +1,47 @@
 :root {
-    /* Cores principais */
     --cor-primaria: #2E7D32;
     --cor-primaria-escura: #1B5E20;
-    --cor-primaria-clara: #66BB6A;
-
-    /* Cores secundárias */
     --cor-secundaria: #F9A825;
-    --cor-secundaria-escura: #F57F17;
-
-    /* Cores neutras */
-    --cor-branco: #FFFFFF;
     --cor-fundo: #F5F5F5;
     --cor-texto: #212121;
-    --cor-texto-secundario: #616161;
-
-    /* Tipografia */
-    --fonte-base: 16px;
-    --fonte-pequena: 14px;
-    --fonte-media: 18px;
-    --fonte-grande: 24px;
-    --fonte-titulo: 32px;
-
-    /* Espaçamentos modulares */
-    --espaco-1: 4px;
-    --espaco-2: 8px;
-    --espaco-3: 16px;
-    --espaco-4: 24px;
-    --espaco-5: 32px;
-    --espaco-6: 48px;
-}
-@media (prefers-color-scheme: dark) {
-    :root {
-        --cor-branco: #FFFFFF;
-        --cor-fundo: #121212;
-        --cor-texto: #FFFFFF;
-        --cor-texto-secundario: #E0E0E0;
-        --cor-primaria: #66BB6A;
-        --cor-primaria-escura: #81C784;
-    }
-}
-/* Layout principal com CSS Grid de 12 colunas */
-main 
-{
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: var(--espaco-4);
-    padding: var(--espaco-5);
+    --cor-branco: #FFFFFF;
 }
 
-main > section {
-    grid-column: span 12;
+* {
+    box-sizing: border-box;
 }
 
-main > img {
-    grid-column: span 12;
-    width: 100%;
-    height: auto;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--cor-texto);
+    background: var(--cor-fundo);
 }
-
-/* Breakpoint 1 - telas pequenas */
-@media (min-width: 480px) {
-    main {
-        gap: var(--espaco-4);
-    }
-}
-
-/* Breakpoint 2 - tablets */
-@media (min-width: 768px) {
-    main > section {
-        grid-column: span 6;
-    }
-}
-
-/* Breakpoint 3 - telas médias */
-@media (min-width: 1024px) {
-    main {
-        padding: var(--espaco-6);
-    }
-
-    main > section {
-        grid-column: span 6;
-    }
-}
-
-/* Breakpoint 4 - desktops */
-@media (min-width: 1200px) {
-    main {
-        gap: var(--espaco-5);
-    }
-}
-
-/* Breakpoint 5 - desktops panorâmicos */
-@media (min-width: 1440px) {
-    main {
-        max-width: 1400px;
-        margin: 0 auto;
-    }
-}
-/* Componentes internos com Flexbox */
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--espaco-4);
-    padding: var(--espaco-4);
+    padding: 24px;
+    background: var(--cor-primaria);
+    color: var(--cor-branco);
+}
+
+header h1 {
+    margin: 0 0 16px;
+    text-align: center;
 }
 
 nav {
     display: flex;
-    align-items: center;
-    gap: var(--espaco-3);
-    flex-wrap: wrap;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: var(--espaco-4);
-}
-/* Navegação responsiva e interativa */
-
-nav {
-    position: relative;
-}
-
-.menu-toggle {
-    display: none;
-}
-
-.menu-icon {
-    display: none;
-    cursor: pointer;
-    font-size: 28px;
+    justify-content: center;
 }
 
 .menu {
     display: flex;
-    align-items: center;
-    gap: var(--espaco-3);
-    list-style: none;
+    gap: 8px;
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
 .menu li {
@@ -149,14 +49,16 @@ nav {
 }
 
 .menu a {
-    color: var(--cor-texto);
+    display: block;
+    padding: 8px 16px;
+    color: var(--cor-branco);
     text-decoration: none;
-    padding: var(--espaco-2);
+    border-radius: 4px;
 }
 
 .menu a:hover,
-.menu a:focus {
-    color: var(--cor-primaria);
+.menu a:focus-visible {
+    background: var(--cor-primaria-escura);
 }
 
 .submenu {
@@ -165,164 +67,164 @@ nav {
     top: 100%;
     left: 0;
     min-width: 180px;
-    background-color: var(--cor-branco);
-    padding: var(--espaco-2);
+    margin: 0;
+    padding: 8px;
     list-style: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    background: var(--cor-primaria-escura);
+    z-index: 10;
 }
 
-.menu li:hover > .submenu,
-.menu li:focus-within > .submenu {
+.menu li:hover .submenu,
+.menu li:focus-within .submenu {
     display: block;
 }
 
-.submenu li {
+.menu-toggle {
+    display: none;
+}
+
+main {
+    width: min(100% - 32px, 1000px);
+    margin: 0 auto;
+    padding: 48px 0;
+}
+
+.capa {
+    display: block;
     width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto 32px;
+    border-radius: 8px;
 }
 
-.submenu a {
-    display: block;
-    white-space: nowrap;
-    padding: var(--espaco-2);
+section,
+article {
+    margin-bottom: 24px;
+    padding: 24px;
+    background: var(--cor-branco);
+    border-radius: 8px;
 }
 
-/* Menu mobile */
+h2 {
+    color: var(--cor-primaria-escura);
+}
 
-@media (max-width: 767px) {
-    .menu-icon {
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+fieldset {
+    display: grid;
+    gap: 8px;
+    padding: 24px;
+    border: 1px solid #777;
+    border-radius: 6px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #777;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+input:focus-visible,
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--cor-secundaria);
+    outline-offset: 2px;
+}
+
+button[type="submit"] {
+    padding: 12px;
+    border: 0;
+    border-radius: 4px;
+    background: var(--cor-primaria);
+    color: var(--cor-branco);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background: var(--cor-primaria-escura);
+}
+
+.campo-erro {
+    border: 2px solid #B00020;
+}
+
+.feedback {
+    font-weight: bold;
+}
+
+.feedback.erro {
+    color: #B00020;
+}
+
+.feedback.sucesso {
+    color: var(--cor-primaria-escura);
+}
+
+footer {
+    padding: 24px;
+    text-align: center;
+    background: var(--cor-primaria-escura);
+    color: var(--cor-branco);
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
         display: block;
+        margin: 0 auto 8px;
+        padding: 6px 12px;
+        border: 0;
+        background: transparent;
+        color: white;
+        font-size: 28px;
+        cursor: pointer;
     }
 
     .menu {
         display: none;
+        width: 100%;
         flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-        gap: var(--espaco-2);
-        padding-top: var(--espaco-3);
     }
 
-    .menu-toggle:checked ~ .menu {
+    .menu.aberto {
         display: flex;
-    }
-
-    .menu li {
-        width: 100%;
     }
 
     .submenu {
         position: static;
         width: 100%;
-        box-shadow: none;
     }
-
-    .menu li:hover > .submenu,
-    .menu li:focus-within > .submenu {
-        display: none;
-    }
-
-    .menu li:focus-within > .submenu {
-        display: block;
-    }
-}/* Estados interativos dos botões */
-
-button {
-    background-color: #2E7D32;
-    color: #FFFFFF;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
 }
 
-button:hover {
-    background-color: #1B5E20;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-button:focus {
-    outline: 3px solid #66BB6A;
-    outline-offset: 2px;
-}
-
-button:active {
-    transform: scale(0.98);
-}
-
-button:disabled {
-    background-color: #F5F5F5;
-    color: #616161;
-    cursor: not-allowed;
-}
-
-/* Validação visual dos campos */
-
-input:focus {
-    outline: 2px solid #66BB6A;
-    border-color: #2E7D32;
-}
-
-input:valid {
-    border: 2px solid #2E7D32;
-}
-
-input:invalid {
-    border: 2px solid #F9A825;
-}
-/* Componentes de feedback */
-
-.badge {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 12px;
-    background-color: #66BB6A;
-    color: #FFFFFF;
-    font-size: var(--fonte-pequena);
-}
-
-.alerta {
-    padding: 16px;
-    margin: 16px 0;
-    border: 1px solid #F9A825;
-    border-radius: 6px;
-    background-color: #FFF8E1;
-    color: #212121;
-}
-
-.toast {
-    padding: 16px;
-    border-radius: 6px;
-    background-color: #2E7D32;
-    color: #FFFFFF;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: fit-content;
-    margin-top: 16px;
-}
 @media (prefers-color-scheme: dark) {
-    body,
-    header,
-    nav,
-    main,
-    footer,
-    section,
-    article {
-        background-color: #121212;
+    body {
+        background: #121212;
         color: #FFFFFF;
     }
 
-    a {
-        color: #E0E0E0;
+    section,
+    article {
+        background: #1E1E1E;
     }
 
-    button {
-        background-color: #66BB6A;
-        color: #121212;
+    h2 {
+        color: #A5D6A7;
     }
 
     input {
-        background-color: #1E1E1E;
-        color: #FFFFFF;
-        border-color: #81C784;
+        background: #FFFFFF;
+        color: #212121;
     }
 }
